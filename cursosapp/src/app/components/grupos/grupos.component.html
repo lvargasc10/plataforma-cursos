@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<body>
+<div class="tab-pane" id="empresas">
+    <div class="row border g-0 rounded shadow-sm secondary-bg">
+        <div class="col p-4">
+            <h2>Grupos</h2>
+            <div class="album py-5">
+                <div class="container">
+                    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+                        <tr *ngFor="let grupo of lista">
+                            <div class="col">
+                                <div class="card shadow-sm">
+                                    <div class="card-body"> 
+                                        <h5 class="card-title">{{grupo.curso.nombreCurso}}</h5>
+                                        <p class="card-text">Id Grupo:{{" "+grupo.id}} <br>
+                                            <p class="card-text">Codigo Grupo:{{" "+grupo.grupo}} <br>
+                                        <p class="card-text">Fecha Creacion:{{" "+grupo.createAt}} <br>
+                                        <p class="card-text">Hora:{{" "+grupo.hora}} <br>
+                                        <p class="card-text">Salon:{{" "+grupo.salon}} <br>
+                                        <div class="d-flex justify-content-between align-items-center my-2">
+                                            <a  class="btn btn-outline-success btn-sm" data-bs-toggle="modal" (click)="getEmpleados(grupo)"  data-bs-target="#inscribirEmpleado">Inscribir empleado</a>
+                                            <a class="btn btn-outline-success btn-sm" data-bs-toggle="modal" [routerLink]="['/grupos/form', grupo.id]" (click)="modificar(grupo)">Editar</a>
+                                            <a class="btn btn-outline-success btn-sm" data-bs-toggle="modal" (click)="getEmpleados(grupo)" data-bs-target="#listarEmpleado">Inscritos</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </tr>
+                          
+                    </div>
+                                  
+                </div>
+               
+            </div>
+            <a href=" " class="btn btn-secondary btn-sm"  [routerLink]="['/grupos/form', grupo.id]">Crear grupo nuevo</a>  
+        </div>
+    </div>
+</div>
+</body>
+<div class="modal fade" id="listarEmpleado" tabindex="-1" role="dialog" aria-labelledby="listarEmpleado" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Listar inscritos</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">                
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                      <th scope="col">id</th>
+                      <th scope="col">identificacion</th>
+                      <th scope="col">nombre</th>
+                      <th scope="col">nota</th>
+                      <th scope="col">fallas</th>
+                      <th scope="col">certificados</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let empleadosgrupo of grupo.empleados; index as i">
+                            <th scope="row">{{ i + 1 }}</th>
+                            <td>{{ empleadosgrupo.empleado.identificacion }}</td>
+                            <td>{{ empleadosgrupo.empleado.nombreEmpleado }}</td>
+                            <td>{{ empleadosgrupo.notaFinal }}</td>
+                            <td>{{ empleadosgrupo.fallas  }}</td>
+                            <td>
+                            <button type="button" class="btn btn-outline-success" data-bs-dismiss="modal"  (click)="certificado(empleadosgrupo)"  data-bs-toggle="modal" >Generar</button></td>
+                          </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="empresaCreada" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Grupo creado</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="inscribirEmpleado" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Añadir empleado</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>          
+                <form>
+                    <label class="form-label">Empleado</label>
+                    <input #identificacionEmple class="form-control" type="number" placeholder="Empleado" aria-label="default input example">
+                    <label class="form-label">Nota</label>
+                    <input #nombreEmplec class="form-control" type="number" placeholder="Nota" aria-label="default input example">
+                    <label class="form-label">Fallas</label>
+                    <input #direccionEmple class="form-control" type="number" placeholder="Fallas" aria-label="default input example">                                     
+                </form>           
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-success" data-bs-dismiss="modal" data-bs-toggle="modal"  data-bs-target="#empleadoInscrito">Inscribir</button>             
+                <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="empleadoInscrito" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Empleado Inscrito en el curso</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>

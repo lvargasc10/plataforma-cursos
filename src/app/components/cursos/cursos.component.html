@@ -1,0 +1,54 @@
+
+<div class="card-header"><h2>{{titulo}}</h2>  
+</div>
+    <div class="card-body text-primary">        
+        <button class="btn btn-primary my-2" routerLink="/cursos/form">Crear curso</button>        
+        <table id="table" class="table table-hover table-striped" style="text-align:center;" data-filter-control="true"
+        data-show-search-clear-button="true">
+            
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Identificacion</th>
+                    <th>NombreCurso</th>
+                    <th>Docente</th>
+                    <th>LugarAsistencia</th>
+                    <th>FechaInicio</th>
+                    <th>FechaFinalizacion</th>
+                    <th>Informacion</th>
+                    <th>Costo</th>
+                    <th>Descripcion</th>
+                    <th>Horario</th>
+                    <th>Editar</th>
+                    <th>Eliminar</th>
+                </tr>
+            </thead>
+            
+            <tbody>
+                <tr *ngFor="let curso of lista">
+                    <td>{{curso.id}}</td>
+                    <td>{{curso.identificacion}}</td>
+                    <td>{{curso.nombreCurso}}</td>
+                    <td>{{curso.docente}}</td>
+                    <td>{{curso.lugarAsistencia}}</td>
+                    <td>{{curso.fechaInicio}}</td>
+                    <td>{{curso.fechaFinalizacion}}</td>
+                    <td>{{curso.informacion}}</td>
+                    <td>{{curso.costo}}</td>
+                    <td>{{curso.descripcion}}</td>
+                    <td>{{curso.horario}}</td>                    
+                    <td>
+                        <button class="btn btn-secondary btn-sm" [routerLink]="['/cursos/form', curso.id] " (click)="modificar(curso)">>
+                            Editar
+                        </button>
+                    </td>
+                    <td>
+                        <button class="btn btn-danger btn-sm" (click)="eliminar(curso)">
+                            Eliminar
+                        </button>
+                    </td>
+                </tr>
+            </tbody> 
+        </table>    
+    </div>
+

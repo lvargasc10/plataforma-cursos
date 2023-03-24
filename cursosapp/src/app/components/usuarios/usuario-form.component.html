@@ -1,0 +1,31 @@
+<div class="card border-primary mb-3">
+    <div class="card-header">{{titulo}}</div>
+    <div class="card-body text-primary">
+        <button class="btn btn-secondary my-2" routerLink="/usuarios">Regresar</button>
+        <br />
+        <form>
+            <div class="form-group">
+                <label for="identificacion">Identificacion</label>
+                <input type="text" name="identificacion" id="identificacion" class="form-control"
+                    placeholder="Identificacion" [(ngModel)]="usuario.identificacion">
+                <div class="alert alert-danger" *ngIf="error && error.identificacion">{{error.identificacion}}</div>
+            </div>           
+            <div class="form-group">
+                <label  for="contrasenia">contrasenia</label>
+                <input type="password" name="password" id="password" class="form-control" placeholder="password"
+                    [(ngModel)]="usuario.contrasenia">
+                    <div class="alert alert-danger" *ngIf="error && error.contrasenia">{{error.contrasenia}}</div>  
+            </div>            
+            <div class="form-group">
+                <label for="rol">Rol</label>
+                <input type="text" name="rol" id="rol" class="form-control" placeholder="rol"
+                    [(ngModel)]="usuario.rol">
+                    <div class="alert alert-danger" *ngIf="error && error.rol">{{error.rol}}</div>  
+            </div>           
+            <button class="btn btn-primary" type="button" (click)="usuario.id? modificar():crear()">
+                {{ usuario.id? 'Modificar':'crear'}}</button>
+        </form>
+    </div>
+</div>
+
+

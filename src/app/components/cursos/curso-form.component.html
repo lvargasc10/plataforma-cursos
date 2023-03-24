@@ -1,0 +1,87 @@
+<div class=""card border-primary mb-3>
+    <div class="card-header"><h2>{{titulo}}</h2></div>
+    <div class="card-body text-primary">
+        <button class="btn btn-secondary my-2" routerLink="/cursos">Regresar</button>
+        <br/>
+        <form>
+            <div class="form-group">
+                <label for="identificacion">Identificacion</label>
+                <input type="number" name="identificacion" id="identificacion" class="form-control" [(ngModel)]="curso.identificacion">
+                <div class="alert alert-danger" *ngIf="error && error.identificacion">
+                    {{error.identificacion}}
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="nombreCurso">Nombre Curso</label>
+                <input type="text" name="nombreCurso" id="nombreCurso" class="form-control" [(ngModel)]="curso.nombreCurso">
+                <div class="alert alert-danger" *ngIf="error && error.nombreCurso">
+                    {{error.nombreCurso}}
+                </div>
+            </div>           
+            <div class="form-group">
+                <label for="docente">Docente</label>
+                <input type="text" name="docente" id="docente" class="form-control" [(ngModel)]="curso.docente">
+                <div class="alert alert-danger" *ngIf="error && error.docente">
+                    {{error.docente}}
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="lugarAsistencia">Lugar Asistencia</label>
+                <input type="text" name="lugarAsistencia" id="lugarAsistencia" class="form-control" [(ngModel)]="curso.lugarAsistencia">
+                <div class="alert alert-danger" *ngIf="error && error.lugarAsistencia">
+                    {{error.lugarAsistencia}}
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label for="fechaInicio">fecha Inicio</label>
+                <input type="date" name="fechaInicio" id="fechaInicio" class="form-control" [(ngModel)]="curso.fechaInicio">
+                <div class="alert alert-danger" *ngIf="error && error.fechaInicio">
+                    {{error.fechaInicio}}
+                </div>
+            </div>
+           
+            <div class="form-group">
+                <label for="fechaFinalizacion">Fecha Finalizacion</label>
+                <input type="date" name="fechaFinalizacion" id="fechaFinalizacion" class="form-control" [(ngModel)]="curso.fechaFinalizacion">
+                <div class="alert alert-danger" *ngIf="error && error.fechaFinalizacion">
+                    {{error.fechaFinalizacion}}
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label for="informacion">Informacion</label>
+                <input type="text" name="informacion" id="informacion" class="form-control" [(ngModel)]="curso.informacion">
+                <div class="alert alert-danger" *ngIf="error && error.informacion">
+                    {{error.informacion}}
+                </div>
+            </div>
+          
+            <div class="form-group">
+                <label for="costo">Costo</label>
+                <input type="text" name="costo" id="costo" class="form-control" [(ngModel)]="curso.costo">
+                <div class="alert alert-danger" *ngIf="error && error.costo">
+                    {{error.costo}}
+                </div>
+            </div>         
+            <div class="form-group">
+                <label for="descripcion">Descripcion</label>
+                <input type="text" name="descripcion" id="descripcion" class="form-control" [(ngModel)]="curso.descripcion">
+                <div class="alert alert-danger" *ngIf="error && error.descripcion">
+                    {{error.descripcion}}
+                </div>
+             <div class="form-group">
+                <label for="horario">Horario</label>
+                <input type="text" name="horario" id="horario" class="form-control" [(ngModel)]="curso.horario">
+                <div class="alert alert-danger" *ngIf="error && error.horario">
+                    {{error.horario}}
+                </div>
+            </div>    
+            </div>
+            <br/>
+            <button class="btn btn-primary" type="button" (click)="curso.id? modificar():crear()">
+                {{ curso.id? 'Modificar':'crear'}}</button>
+           
+        </form>
+    </div>
+</div>

@@ -1,0 +1,51 @@
+<div class="card border-primary mb-3">  
+  <div class="card-header">{{titulo}}</div>
+  <div class="card-body text-primary">   
+
+      <button class="btn btn-primary my-2" routerLink="/empleados/form">Crear Empleado</button>
+    <table id="tablaEmpleados" class="table table-striped" style="width:100%">       
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Identificacion</th>
+                <th>Nombre</th>
+                <th>Fecha Nacimiento</th>
+                <th>Correo</th>
+                <th>Telefono</th>
+                <th>Empresa</th>                  
+                <th>Editar</th>
+                <th>Eliminar</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let empleado of lista">
+                <td>{{empleado.id}}</td>
+                <td>{{empleado.identificacion}}</td>
+                <td>{{empleado.nombreEmpleado}}</td>                  
+                <td>{{empleado.fechaNacimiento}}</td>
+                <td>{{empleado.correo}}</td>
+                <td>{{empleado.telefono}}</td>
+                <td>{{empleado.empresa.nombreEmpresa}}</td>
+                <td>
+                  
+                  <button class="btn btn-secondary btn-sm" [routerLink]="['/empleados/form', empleado.id] " (click)="modificar(empleado)">
+                    Editar
+                    </button>
+                </td>
+                <td>
+                  <button class="btn btn-danger btn-sm" (click)="eliminar(empleado)" >
+                    Eliminar
+                  </button>
+              </td>
+            </tr>
+        </tbody>   
+    </table>
+
+    <mat-paginator [length]="totalRegistros"
+            [pageSize]="totalPorPagina"
+            [pageIndex]="paginaActual"
+            [pageSizeOptions]="pageSizeOptions"
+            (page) = "paginar($event)">
+    </mat-paginator>
+  </div>
+</div>
